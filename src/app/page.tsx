@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "./page.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
 import ConfettiExplosion, { ConfettiProps } from "react-confetti-explosion";
@@ -20,6 +20,17 @@ const largeProps: ConfettiProps = {
 export default function Home() {
   const { width, height } = useWindowSize();
   const [showConfetti, setShowConfetti] = useState(false);
+  const [showWinner, setShowWinner] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const onShowWinnerPlayAudio = () => {
+    audioRef.current?.play();
+    setShowWinner(true);
+    setTimeout(() => {
+      setShowConfetti(true);
+    }, 6000);
+  };
+
   return (
     <>
       {showConfetti && (
@@ -55,11 +66,15 @@ export default function Home() {
             </div>
           )}
           {showConfetti && <ConfettiExplosion {...largeProps} />}
-          {!showConfetti && (
-            <button onClick={() => setShowConfetti(true)}>
+          {!showWinner && (
+            <button onClick={onShowWinnerPlayAudio}>
               Vis meg ukens vinner
             </button>
           )}
+          <audio src="/drum-roll.m4a" ref={audioRef}>
+            Your browser does not support the
+            <code>audio</code> element.
+          </audio>
         </div>
       </main>
     </>
