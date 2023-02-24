@@ -57,8 +57,8 @@ export default function Home() {
               <h1 className={inter.className}>Vinner!</h1>
               <Image
                 className={styles.winner}
-                src="/nicolaj.png"
-                alt="Nicolaj logo"
+                src="/maren.png"
+                alt="maren logo"
                 width={310}
                 height={530}
                 priority
