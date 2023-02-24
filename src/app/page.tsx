@@ -1,91 +1,67 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+"use client";
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import styles from "./page.module.css";
+import { useEffect, useState } from "react";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
+import ConfettiExplosion, { ConfettiProps } from "react-confetti-explosion";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
+
+const largeProps: ConfettiProps = {
+  force: 0.8,
+  duration: 3000,
+  particleCount: 300,
+  width: 1600,
+  colors: ["#C0C2FA", "#676EF6", "#F7F7F7", "#D8D9FC"],
+};
 
 export default function Home() {
+  const { width, height } = useWindowSize();
+  const [showConfetti, setShowConfetti] = useState(false);
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <>
+      {showConfetti && (
+        <Confetti
+          width={width}
+          height={height}
+          colors={["#C0C2FA", "#676EF6", "#F7F7F7", "#D8D9FC"]}
         />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
+      )}
+      <main className={styles.main}>
+        <div>
+          <Image
+            src="/bingo-staking.png"
+            className={styles.logo}
+            alt="Bingo staking logo"
+            width={282}
+            height={155}
+            priority
+          />
         </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+        <div>
+          {showConfetti && (
+            <div className={styles.section}>
+              <h1 className={inter.className}>Vinner!</h1>
+              <Image
+                className={styles.winner}
+                src="/nicolaj.png"
+                alt="Nicolaj logo"
+                width={310}
+                height={530}
+                priority
+              />
+            </div>
+          )}
+          {showConfetti && <ConfettiExplosion {...largeProps} />}
+          {!showConfetti && (
+            <button onClick={() => setShowConfetti(true)}>
+              Vis meg ukens vinner
+            </button>
+          )}
+        </div>
+      </main>
+    </>
+  );
 }

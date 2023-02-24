@@ -1,9 +1,8 @@
 .main {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 6rem;
+  padding: 4rem;
   min-height: 100vh;
 }
 
@@ -104,10 +103,13 @@
   transform: translateZ(0);
 }
 
-.logo,
-.thirteen {
-  position: relative;
+.logo {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+
 }
+
 
 .thirteen {
   display: flex;
@@ -171,6 +173,13 @@
   .card:hover span {
     transform: none;
   }
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 /* Mobile and Tablet */
@@ -255,10 +264,7 @@
     filter: invert(1);
   }
 
-  .logo,
-  .thirteen img {
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
-  }
+
 }
 
 @keyframes rotate {
@@ -268,4 +274,27 @@
   to {
     transform: rotate(0deg);
   }
+}
+
+.winner {
+  width: 310px;
+  height: 530px;
+  animation: spin 1s linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    transform: scale(0.5) rotate(360deg);
+  }
+  100% {
+    transform: scale(1) rotate(720deg);
+  }
+}
+
+.button > div {
+  margin-inline: auto;
+  top: -20px;
 }
