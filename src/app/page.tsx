@@ -59,7 +59,7 @@ export default function Home() {
                 className={styles.winner}
                 src="/maren.png"
                 alt="maren logo"
-                width={310}
+                width={345}
                 height={530}
                 priority
               />
