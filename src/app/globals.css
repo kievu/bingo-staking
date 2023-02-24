@@ -116,8 +116,8 @@ align-items: center;
 padding: 8px 24px;
 
 position: relative;
-width: 178px;
-height: 40px;
+width: 280px;
+height: 60px;
 
 /* Brand Colors/Blue */
 
@@ -126,6 +126,8 @@ border-radius: 100px;
 border-width: 0;
 cursor: pointer;
 
+font-size: 20px;
+color: white;
 }
 
 button:hover {
